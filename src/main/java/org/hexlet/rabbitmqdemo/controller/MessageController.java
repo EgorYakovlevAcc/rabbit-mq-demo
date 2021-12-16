@@ -3,7 +3,6 @@ package org.hexlet.rabbitmqdemo.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hexlet.rabbitmqdemo.dto.MessageDto;
-import org.hexlet.rabbitmqdemo.model.Message;
 import org.hexlet.rabbitmqdemo.service.MessageService;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
