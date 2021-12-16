@@ -1,6 +1,7 @@
 package org.hexlet.rabbitmqdemo.service.impl;
 
 import org.hexlet.rabbitmqdemo.dto.MessageDto;
+import org.hexlet.rabbitmqdemo.dto.UserType;
 import org.hexlet.rabbitmqdemo.model.Message;
 import org.hexlet.rabbitmqdemo.repo.MessageRepo;
 import org.hexlet.rabbitmqdemo.service.MessageService;
@@ -30,6 +31,21 @@ public class MessageServiceImpl implements MessageService {
                 : messages.stream()
                 .map(this::toMessageDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public String getTopicByUserType(UserType userType) {
+        switch (userType) {
+            case CUSTOMER: {
+                return "messages-customer";
+            }
+            case BACKOFFICE: {
+                return "messages-backoffice";
+            }
+            default: {
+                throw new RuntimeException("There is no topic for userType: " + userType);
+            }
+        }
     }
 
     private MessageDto toMessageDto(Message message) {

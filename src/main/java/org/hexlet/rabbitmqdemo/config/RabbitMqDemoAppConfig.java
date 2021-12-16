@@ -18,8 +18,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMqDemoAppConfig {
     @Bean
-    public Queue messagesQueue() {
-        return new Queue("messages", false);
+    public Queue messagesCustomerQueue() {
+        return new Queue("messages-customer", false);
+    }
+
+    @Bean
+    public Queue messagesBackofficeQueue() {
+        return new Queue("messages-backoffice", false);
     }
 
     @Bean

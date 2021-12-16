@@ -20,9 +20,16 @@ public class QueueConsumer {
         this.objectMapper = objectMapper;
     }
 
-    @RabbitListener(queues = "messages")
-    public void processQueue1(String message) throws JsonProcessingException {
-        LOGGER.info("Get msg from rabbitMQ: " + message);
+    @RabbitListener(queues = "messages-customer")
+    public void processQueueCustomer(String message) throws JsonProcessingException {
+        LOGGER.info("[messages-customer] Get msg from rabbitMQ: " + message);
+        MessageDto messageDto = objectMapper.readValue(message, MessageDto.class);
+        messageService.save(messageDto);
+    }
+
+    @RabbitListener(queues = "messages-backoffice")
+    public void processQueueBackoffice(String message) throws JsonProcessingException {
+        LOGGER.info("[messages-backoffice] Get msg from rabbitMQ: " + message);
         MessageDto messageDto = objectMapper.readValue(message, MessageDto.class);
         messageService.save(messageDto);
     }
